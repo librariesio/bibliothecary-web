@@ -1,0 +1,40 @@
+version: '3'
+services:
+  app:
+    build: ./
+    ports:
+      - 5000:5000
+    environment:
+      - PORT=5000
+    depends_on:
+      - mix
+  mix:
+    image: librariesio/mix-deps-json
+    environment:
+      - PORT=5001
+    ports:
+      - 5001:5001
+  yarn:
+    image: librariesio/yarn-parser
+    environment:
+      - PORT=5002
+    ports:
+      - 5002:5002
+  gradle:
+    image: librariesio/gradle-parser
+    environment:
+      - PORT=5003
+    ports:
+      - 5003:5003
+  carthage:
+    image: librariesio/carthage_parser
+    environment:
+      - PORT=5004
+    ports:
+      - 5004:5004
+  clojars:
+    image: librariesio/clojars-json
+    environment:
+      - PORT=5005
+    ports:
+      - 5005:5005
